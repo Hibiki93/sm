@@ -12,35 +12,20 @@
                 
                 <b-dropdown-item-button class="btn-change7">Lorry Servicing</b-dropdown-item-button>
                 <b-dropdown-item-button class="btn-change7">Racing Kit</b-dropdown-item-button>
-                <b-dropdown-item-button class="btn-change7">Wheel Balancer Tyre Changer</b-dropdown-item-button>
+                <b-dropdown-item-button class="btn-change7" style="margin-bottom:10px;white-space: normal;">Wheel Balancer Tyre Changer</b-dropdown-item-button>
                 <b-dropdown-item-button class="btn-change7">Motorcycle Store</b-dropdown-item-button>
                 <b-dropdown-item-button class="btn-change7">Motorcycle Accessories</b-dropdown-item-button>
                 <b-dropdown-item-button class="btn-change7">Heavy Vehicles</b-dropdown-item-button>
             </div>
             <div class="col-9 row ">
-                <div class="col-lg-6 col-md-6">
-                    <product-item/>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <product-item/>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <product-item/>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <product-item/>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <product-item/>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <product-item/>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <product-item/>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <product-item/>
+                <div class="col-lg-6 col-md-6"
+                    v-for="(product, index) in products"
+                    v-bind:key="index"
+                    >
+                    <product-item
+                    v-bind:name="product.name"
+                    v-bind:text="product.text"
+                    v-bind:photo="product.photo"></product-item>
                 </div>
                 <div class="col-12 row text-center">
                         <ul class="pagination">
@@ -70,6 +55,41 @@
 import productItem from "@/components/product-item";
 
 export default {
+    data(){
+        return{
+            products:[{
+                name:'item 1',
+                text:'Lorem ipsum dolor sit amet.',
+                photo:'./../../static/img/car-1.jpg',
+            },
+            {
+                name:'item 2',
+                text:'Lorem ipsum dolor sit amet.',
+                photo:'./../../static/img/car-2.jpg',
+            },
+            {
+                name:'item 3',
+                text:'Lorem ipsum dolor sit amet.',
+                photo:'./../../static/img/car-1.jpg',
+            },
+            {
+                name:'item 4',
+                text:'Lorem ipsum dolor sit amet.',
+                photo:'./../../static/img/car-2.jpg',
+            },
+            {
+                name:'item 5',
+                text:'Lorem ipsum dolor sit amet.',
+                photo:'./../../static/img/car-1.jpg',
+            },
+            {
+                name:'item 6',
+                text:'Lorem ipsum dolor sit amet.',
+                photo:'./../../static/img/car-2.jpg',
+            },
+            ]
+        }
+    },
   components: {
     productItem
   }
@@ -96,7 +116,7 @@ export default {
 }
 
 .btn-change7 {
-  height: 40px;
+  height: auto;
   width: 90%;
   background: #efefef;
   margin: 5px;

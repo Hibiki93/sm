@@ -1,22 +1,40 @@
 <template>
     <div class="grid">
 					<figure class="thumbnail effect-sadie">
-						<img src="./../../static/img/product.jpg" alt="img23"/>
+						<img :src="photo" alt="img23"/>
 						<figcaption>
-							<span><strong>CHAUFFEUR SERVICES</strong></span>
-							<p>The best services on Malaysia</p>
-							<a href="#"></a>
+							<router-link to=""
+							@click="handleClick"
+							>
+								<span><strong>{{name}}</strong></span>
+								<p>{{text}}</p>
+							</router-link>
 						</figcaption>			
 					</figure>
                 </div>
 </template>
 
+<script>
+export default {
+	props:['name','text','photo'],
+	methods:{
+		handleClick(){
+			console.log('clicked')
+			this.name = event.target.value;
+			this.$emit('handleClick', this.name)
+		}
+	}
+}
+</script>
+
+
 <style scoped>
 
 .thumbnail{        
-    width: 300px; 
-    height: 300px;
-    overflow: auto;
+    width: auto; 
+    height: 180px;
+	background-size: cover;
+    /* overflow: auto; */
 }
 
 .thumbnail img {
@@ -33,7 +51,7 @@ figure.effect-sadie figcaption::before {
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 90%;
+	height: 100%;
 	background: -webkit-linear-gradient(top, rgba(72,76,97,0) 0%, rgba(72,76,97,0.8) 75%);
 	background: linear-gradient(to bottom, #e29d097e 0%, #e29d09d5 75%);
 	content: '';
@@ -73,3 +91,4 @@ figure.effect-sadie:hover p {
 	transform: translate3d(0,0,0);
 }
 </style>
+

@@ -1,5 +1,5 @@
 <template>
-    <div class="container" >
+    <div class="join-us container" >
         <div class="col-11 text-center">
             <h4>
                 Welcome to Supplier Malaysia, 
@@ -62,10 +62,14 @@
 </template>
 
 <style scoped>
-.btm-text{
-    position: fixed;
-    right: 10px;
-    bottom: 80px;
-    z-index: -1;
+.btm-text {
+  position: fixed;
+  right: 10px;
+  bottom: 80px;
+  z-index: -1;
+}
+
+.join-us {
+  background-color: white;
 }
 </style>
