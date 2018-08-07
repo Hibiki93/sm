@@ -6,9 +6,9 @@
                 <b-dropdown-item-button class="btn-change7" @click="selectCategory" value='tourism' >Tourism & Recreation</b-dropdown-item-button>
                 <b-dropdown-item-button class="btn-change7" @click="selectCategory" value='hotel'>Hotel</b-dropdown-item-button>
                 <b-dropdown-item-button class="btn-change7" @click="selectCategory" value='pp'>Popular Places</b-dropdown-item-button>
-                <b-dropdown-item-button class="btn-change7"@click="selectCategory" value='tb'>Travel Bureaus</b-dropdown-item-button>
-                <b-dropdown-item-button class="btn-change7"@click="selectCategory" value='cs'>Chauffeur Services</b-dropdown-item-button>
-                <b-dropdown-item-button class="btn-change7"@click="selectCategory" value='tbus'>Travel Bus</b-dropdown-item-button>
+                <b-dropdown-item-button class="btn-change7" @click="selectCategory" value='tb'>Travel Bureaus</b-dropdown-item-button>
+                <b-dropdown-item-button class="btn-change7" @click="selectCategory" value='cs'>Chauffeur Services</b-dropdown-item-button>
+                <b-dropdown-item-button class="btn-change7" @click="selectCategory" value='tbus'>Travel Bus</b-dropdown-item-button>
                 
                 <b-dropdown-item-button class="btn-change7">Luggage</b-dropdown-item-button>
                 <b-dropdown-item-button class="btn-change7">Boat Rental</b-dropdown-item-button>
@@ -58,6 +58,7 @@ export default {
         return{
             selectedCategory:'',
             products:[{
+                id:1,
                 name:'item 1',
                 text:'Lorem ipsum dolor sit amet.',
                 photo:'./../../static/img/travel-1.jpg',

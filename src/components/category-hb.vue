@@ -8,9 +8,9 @@
                 <b-dropdown-item-button class="btn-change7">Health Care Products</b-dropdown-item-button>
                 <b-dropdown-item-button class="btn-change7">Skin Care Products</b-dropdown-item-button>
                 <b-dropdown-item-button class="btn-change7">Health Products</b-dropdown-item-button>
-                <b-dropdown-item-button class="btn-change7">Beauty - Face & Body Spa Slimming</b-dropdown-item-button>
+                <b-dropdown-item-button class="btn-change7" style="margin-bottom:10px;white-space: normal;">Beauty - Face & Body Spa Slimming</b-dropdown-item-button>
                 
-                <b-dropdown-item-button class="btn-change7">Traditional Chinese Medicine</b-dropdown-item-button>
+                <b-dropdown-item-button class="btn-change7" style="margin-bottom:10px;white-space: normal;" >Traditional Chinese Medicine</b-dropdown-item-button>
                 <b-dropdown-item-button class="btn-change7">Spa</b-dropdown-item-button>
                 <b-dropdown-item-button class="btn-change7">Optical Premises</b-dropdown-item-button>
                 <b-dropdown-item-button class="btn-change7">Bridal Makeup</b-dropdown-item-button>
@@ -116,7 +116,7 @@ export default {
 }
 
 .btn-change7 {
-  height: 40px;
+  height: auto;
   width: 90%;
   background: #efefef;
   margin: 5px;

@@ -39,7 +39,7 @@
     </b-carousel>
         </div>
         <div class="col-md-5 col-xs-12 text-left">
-            <h3>{{product.name}}</h3>
+            <h3></h3>
             <p>Company : ACM Motorsport </p>
             <p> Product Created Date : 2018-8-03</p>
             <p> Official Website : <a href="http://www.acm-motorsport.com.my">http://www.acm-motorsport.com.my</a></p>

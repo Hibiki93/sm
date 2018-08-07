@@ -3,8 +3,10 @@
 					<figure class="thumbnail effect-sadie">
 						<img :src="photo" alt="img23"/>
 						<figcaption>
-							<span><strong>{{name}}</strong></span>
+							<router-link :to="'/product/' + id" >
+								<span><strong>{{name}}</strong></span>
 								<p>{{text}}</p>
+							</router-link>
 						</figcaption>			
 					</figure>
                 </div>
