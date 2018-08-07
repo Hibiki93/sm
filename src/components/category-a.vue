@@ -3,12 +3,12 @@
         <div class="row justify-content-start">
             <div class="d-none d-md-block sidebar col-3 align-items-start">
                 <b-dropdown-header>Popular Categories</b-dropdown-header>
-                <b-dropdown-item-button class="btn-change7">Tourism & Recreation</b-dropdown-item-button>
-                <b-dropdown-item-button class="btn-change7">Hotel</b-dropdown-item-button>
-                <b-dropdown-item-button class="btn-change7">Popular Places</b-dropdown-item-button>
-                <b-dropdown-item-button class="btn-change7">Travel Bureaus</b-dropdown-item-button>
-                <b-dropdown-item-button class="btn-change7">Chauffeur Services</b-dropdown-item-button>
-                <b-dropdown-item-button class="btn-change7">Travel Bus</b-dropdown-item-button>
+                <b-dropdown-item-button class="btn-change7" @click="selectCategory" value='tourism' >Tourism & Recreation</b-dropdown-item-button>
+                <b-dropdown-item-button class="btn-change7" @click="selectCategory" value='hotel'>Hotel</b-dropdown-item-button>
+                <b-dropdown-item-button class="btn-change7" @click="selectCategory" value='pp'>Popular Places</b-dropdown-item-button>
+                <b-dropdown-item-button class="btn-change7"@click="selectCategory" value='tb'>Travel Bureaus</b-dropdown-item-button>
+                <b-dropdown-item-button class="btn-change7"@click="selectCategory" value='cs'>Chauffeur Services</b-dropdown-item-button>
+                <b-dropdown-item-button class="btn-change7"@click="selectCategory" value='tbus'>Travel Bus</b-dropdown-item-button>
                 
                 <b-dropdown-item-button class="btn-change7">Luggage</b-dropdown-item-button>
                 <b-dropdown-item-button class="btn-change7">Boat Rental</b-dropdown-item-button>
@@ -18,6 +18,7 @@
                 <div class="col-lg-6 col-md-6"
                     v-for="(product, index) in products"
                     v-bind:key="index"
+                    v-if="product.show"
                     >
                     <product-item
                     v-bind:name="product.name"
@@ -55,35 +56,48 @@ import productItem from "@/components/product-item";
 export default {
     data(){
         return{
+            selectedCategory:'',
             products:[{
                 name:'item 1',
                 text:'Lorem ipsum dolor sit amet.',
                 photo:'./../../static/img/travel-1.jpg',
+                category:'tourism',
+                show:false
             },
             {
                 name:'item 2',
                 text:'Lorem ipsum dolor sit amet.',
                 photo:'./../../static/img/travel-2.jpg',
+                category:'tourism',
+                show:false
             },
             {
                 name:'item 3',
                 text:'Lorem ipsum dolor sit amet.',
                 photo:'./../../static/img/travel-1.jpg',
+                category:'tourism',
+                show:false
             },
             {
                 name:'item 4',
                 text:'Lorem ipsum dolor sit amet.',
                 photo:'./../../static/img/travel-2.jpg',
+                category:'hotel',
+                show:false
             },
             {
                 name:'item 5',
                 text:'Lorem ipsum dolor sit amet.',
                 photo:'./../../static/img/travel-1.jpg',
+                category:'hotel',
+                show:false
             },
             {
                 name:'item 6',
                 text:'Lorem ipsum dolor sit amet.',
                 photo:'./../../static/img/travel-2.jpg',
+                category:'hotel',
+                show:false
             },
             ]
         }
@@ -91,6 +105,18 @@ export default {
   components: {
     productItem
   },
+  methods:{
+      selectCategory(e){
+          this.selectedCategory = e.target.value
+          var x = this.products.filter(function(product){
+              return product.category == e.target.value
+          })
+            for (var i = 0; i <x.length ;i++){
+            x[i].show=true
+            }
+      }
+
+  }
 };
 </script>
 

@@ -3,12 +3,8 @@
 					<figure class="thumbnail effect-sadie">
 						<img :src="photo" alt="img23"/>
 						<figcaption>
-							<router-link to=""
-							@click="handleClick"
-							>
-								<span><strong>{{name}}</strong></span>
+							<span><strong>{{name}}</strong></span>
 								<p>{{text}}</p>
-							</router-link>
 						</figcaption>			
 					</figure>
                 </div>

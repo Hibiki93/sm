@@ -29,10 +29,9 @@ export default new Router({
       component: Home
     },
     {
-      path: "/product/:id",
-      name: "product",
-      component: Product,
-      props: true
+      path: "/product",
+      name: "product detail",
+      component: Product
     },
     {
       path: "/category",
@@ -88,11 +87,6 @@ export default new Router({
       path: "/contact-us",
       name: "contact",
       component: JoinUs
-    },
-    {
-      path: "/product-page/:id",
-      name: "product detail",
-      component: Product
     }
   ]
 });

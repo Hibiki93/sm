@@ -22,11 +22,11 @@
       <!-- Text slides with image -->
       <b-carousel-slide caption="First slide"
                         text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-                        img-src="./../../static/img/product.jpg"
+                        img-src="./../../static/img/car-1.jpg"
       ></b-carousel-slide>
 
       <!-- Slides with custom text -->
-      <b-carousel-slide img-src="./../../static/img/product.jpg">
+      <b-carousel-slide img-src="./../../static/img/car-2.jpg">
         <h1>Hello world!</h1>
       </b-carousel-slide>
       <!-- Slides with img slot -->
@@ -66,12 +66,9 @@
 </template>
 
 <script>
-import ProductIcon from "@/components/product-item";
+
 
 export default {
-  components: {
-    ProductIcon
-  },
   data() {
     return {
       slide: 0,
