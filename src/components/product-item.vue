@@ -1,11 +1,13 @@
 <template>
     <div class="grid">
 					<figure class="thumbnail effect-sadie">
-						<img :src="photo" alt="img23"/>
 						<figcaption>
-							<router-link :to="'/product/' + id" >
-								<span><strong>{{name}}</strong></span>
-								<p>{{text}}</p>
+									<img :src="photo" alt="no photo"/>
+							<router-link v-bind:to="{name:'product', params:{id:id}}">
+								<span>
+										<strong>{{name}}</strong>
+										<p>{{text}}</p>
+								</span>
 							</router-link>
 						</figcaption>			
 					</figure>
@@ -14,14 +16,7 @@
 
 <script>
 export default {
-	props:['name','text','photo'],
-	methods:{
-		handleClick(){
-			console.log('clicked')
-			this.name = event.target.value;
-			this.$emit('handleClick', this.name)
-		}
-	}
+	props:['name','text','photo','id']
 }
 </script>
 
@@ -30,7 +25,7 @@ export default {
 
 .thumbnail{        
     width: auto; 
-    height: 180px;
+    height: 100px;
 	background-size: cover;
     /* overflow: auto; */
 }

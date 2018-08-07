@@ -30,7 +30,7 @@ export default new Router({
     },
     {
       path: "/product/:id",
-      name: "product detail",
+      name: "product",
       component: Product
     },
     {

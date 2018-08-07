@@ -39,7 +39,8 @@
     </b-carousel>
         </div>
         <div class="col-md-5 col-xs-12 text-left">
-            <h3></h3>
+            <h3>{{name}}</h3>
+            <h4>{{this.$route.params.id}}</h4>
             <p>Company : ACM Motorsport </p>
             <p> Product Created Date : 2018-8-03</p>
             <p> Official Website : <a href="http://www.acm-motorsport.com.my">http://www.acm-motorsport.com.my</a></p>
@@ -59,16 +60,47 @@
                 <p>D-3-5-G, Jalan Dutamas 3, Taman Dutamas Cheras, 43200 Balakong, Selangor, Malaysia.</p>
               </div>
                 <br>
-                <b-btn>Contact Supplier</b-btn>
+                <b-btn class="chip">Contact Supplier</b-btn>
             </div>
         </div>
       </div>
 </template>
 
 <script>
-
+import db from '@/database/firebaseInit'
 
 export default {
+  beforeCreate () {
+    db.collection('category').where('id','==',this.$route.params.id).get()
+    .then(querySnapshot =>{
+            querySnapshot.forEach(doc =>{
+              vm.id = doc.data().id,
+              vm.product_name = doc.data().product_name,
+              vm.product_photo= doc.data().product_photo,
+              vm.product_detail = doc.data().product_detail,
+              vm.company_name = doc.data().compony_name,
+              vm.company_website = doc.data().company_website,
+              vm.company_number = doc.data().company_number
+    }
+    )})
+		// db.collection('category').where('id','==', this.$route.params.id).get()
+		// .then(querySnapshot =>{
+		// 	querySnapshot.forEach(doc => {
+		// 		next(vm =>{
+		// 			vm.id = doc.data().id,
+		// 			vm.product_name = doc.data().product_name,
+		// 			vm.product_photo= doc.data().product_photo,
+		// 			vm.product_detail = doc.data().product_detail,
+		// 			vm.company_name = doc.data().compony_name,
+		// 			vm.company_website = doc.data().company_website,
+		// 			vm.company_number = doc.data().company_number
+		// 		})
+		// 	})
+		// })
+  },
+  created(){
+    console.log( this.$route.params.id)
+  },
   data() {
     return {
       slide: 0,
@@ -76,6 +108,18 @@ export default {
     };
   },
   methods: {
+    // fetchData (){
+    //   db.collection('category').where
+    //   ('id','==',
+    //   this.$route.params.id).get()
+    //   .then(querySnapshot=>{
+    //     querySnapshot.forEach(doc =>{
+    //       this.id = doc.data().id,
+    //       this.product_name = doc.data().name
+    //       console.log( this.$route.params.id)
+    //     })
+    //   })
+    // },
     onSlideStart(slide) {
       this.sliding = true;
     },
@@ -97,7 +141,7 @@ export default {
 
 .chip {
   margin: 10px;
-  background-color: #b1b1b1;
+  background-color:#ffae19 ;
 }
 </style>
 

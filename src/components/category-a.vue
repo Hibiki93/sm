@@ -18,11 +18,10 @@
                 <div class="col-lg-6 col-md-6"
                     v-for="(product, index) in products"
                     v-bind:key="index"
-                    v-if="product.show"
                     >
                     <product-item
                     v-bind:name="product.name"
-                    v-bind:text="product.text"
+                    v-bind:id="product.id"
                     v-bind:photo="product.photo"
                     @click="handleClick"></product-item>
                 </div>
@@ -51,56 +50,33 @@
 </template>
 
 <script>
+import db from '@/database/firebaseInit'
 import productItem from "@/components/product-item";
 
 export default {
+    created(){
+        db.collection('category').get().then
+        (querySnapshot =>{
+            querySnapshot.forEach(doc =>{
+                    const data = {
+                    'id':doc.id,
+                    'name':doc.data().product_name,
+                    'text':doc.data().product_detail,
+                    'company_name':doc.data().company_name,
+                    'company_website':doc.data().company_website,
+                    'company_number':doc.data().company_number,
+                    'photo':doc.data().product_photo,
+                    'category':doc.data().category,
+                    'created':doc.data().created                    
+                }
+                this.products.push(data)
+            })
+        })
+    },
     data(){
         return{
             selectedCategory:'',
-            products:[{
-                id:1,
-                name:'item 1',
-                text:'Lorem ipsum dolor sit amet.',
-                photo:'./../../static/img/travel-1.jpg',
-                category:'tourism',
-                show:false
-            },
-            {
-                name:'item 2',
-                text:'Lorem ipsum dolor sit amet.',
-                photo:'./../../static/img/travel-2.jpg',
-                category:'tourism',
-                show:false
-            },
-            {
-                name:'item 3',
-                text:'Lorem ipsum dolor sit amet.',
-                photo:'./../../static/img/travel-1.jpg',
-                category:'tourism',
-                show:false
-            },
-            {
-                name:'item 4',
-                text:'Lorem ipsum dolor sit amet.',
-                photo:'./../../static/img/travel-2.jpg',
-                category:'hotel',
-                show:false
-            },
-            {
-                name:'item 5',
-                text:'Lorem ipsum dolor sit amet.',
-                photo:'./../../static/img/travel-1.jpg',
-                category:'hotel',
-                show:false
-            },
-            {
-                name:'item 6',
-                text:'Lorem ipsum dolor sit amet.',
-                photo:'./../../static/img/travel-2.jpg',
-                category:'hotel',
-                show:false
-            },
-            ]
+            products : []
         }
     },
   components: {
@@ -108,13 +84,14 @@ export default {
   },
   methods:{
       selectCategory(e){
-          this.selectedCategory = e.target.value
-          var x = this.products.filter(function(product){
-              return product.category == e.target.value
-          })
-            for (var i = 0; i <x.length ;i++){
-            x[i].show=true
-            }
+        //   this.selectedCategory = e.target.value
+        //   var x = this.products.filter(function(product){
+        //       return product.category == e.target.value
+        //   })
+        //     for (var i = 0; i <x.length ;i++){
+        //     x[i].show=true
+        //     }
+        console.log(this.products)
       }
 
   }

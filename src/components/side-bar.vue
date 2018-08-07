@@ -20,28 +20,28 @@
             <router-link to="/">
                 <button class="btn btn-change7 text-left" >Home</button>
             </router-link>
-                    <router-link to="./category-a">
+                    <router-link to="/category-a">
                         <button class="btn btn-change7 text-left">Accommodation</button>
                     </router-link>
-                    <router-link to="./category-f">
+                    <router-link to="/category-f">
                         <button class="btn btn-change7 text-left">Fashion</button>
                     </router-link>
-                    <router-link to="./category-au">
+                    <router-link to="/category-au">
                         <button class="btn btn-change7 text-left">Automotive</button>
                     </router-link>
-                    <router-link to="./category-it">
+                    <router-link to="/category-it">
                         <button class="btn btn-change7 text-left">Computers & IT</button>
                     </router-link>
-                    <router-link to="./category-ed">
+                    <router-link to="/category-ed">
                         <button class="btn btn-change7 text-left">Education</button>
                     </router-link>
-                    <router-link to="./category-el">
+                    <router-link to="/category-el">
                         <button class="btn btn-change7 text-left">Electronics</button>
                     </router-link>
-                    <router-link to="./category-fd">
+                    <router-link to="/category-fd">
                         <button class="btn btn-change7 text-left">Food</button>
                     </router-link>
-                    <router-link to="./category-hb">
+                    <router-link to="/category-hb">
                         <button class="btn btn-change7 text-left">Health & Beauty</button>
                     </router-link>
                         <!-- <router-link to="./cart">
