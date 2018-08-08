@@ -3,8 +3,10 @@
         <div class="row justify-content-start">
             <div class="d-none d-md-block sidebar col-3 align-items-start">
                 <b-dropdown-header>Popular Categories</b-dropdown-header>
-                <b-dropdown-item-button class="btn-change7" @click="selectCategory" value='tourism' >Tourism & Recreation</b-dropdown-item-button>
-                <b-dropdown-item-button class="btn-change7" @click="selectCategory" value='hotel'>Hotel</b-dropdown-item-button>
+                <b-dropdown-item-button class="btn-change7" @click="selectCategory" value='Tourism & Recreation' >Tourism & Recreation</b-dropdown-item-button>
+                <router-link to="">
+                <b-dropdown-item-button class="btn-change7" @click="selectCategory" value='Hotel'>Hotel</b-dropdown-item-button>
+                </router-link>
                 <b-dropdown-item-button class="btn-change7" @click="selectCategory" value='pp'>Popular Places</b-dropdown-item-button>
                 <b-dropdown-item-button class="btn-change7" @click="selectCategory" value='tb'>Travel Bureaus</b-dropdown-item-button>
                 <b-dropdown-item-button class="btn-change7" @click="selectCategory" value='cs'>Chauffeur Services</b-dropdown-item-button>
@@ -25,7 +27,7 @@
                     v-bind:photo="product.photo"
                     @click="handleClick"></product-item>
                 </div>
-                <div class="col-12 row text-center">
+                <div class="col-12 row text-center" style="margin-top:30px;" >
                         <ul class="pagination">
                             <li class="page-item">
                                 <a class="page-link" href="#" aria-label="Previous">
@@ -61,13 +63,9 @@ export default {
                     const data = {
                     'id':doc.id,
                     'name':doc.data().product_name,
-                    'text':doc.data().product_detail,
-                    'company_name':doc.data().company_name,
-                    'company_website':doc.data().company_website,
-                    'company_number':doc.data().company_number,
                     'photo':doc.data().product_photo,
                     'category':doc.data().category,
-                    'created':doc.data().created                    
+                    'created':doc.data().created                
                 }
                 this.products.push(data)
             })
@@ -84,16 +82,34 @@ export default {
   },
   methods:{
       selectCategory(e){
-        //   this.selectedCategory = e.target.value
-        //   var x = this.products.filter(function(product){
-        //       return product.category == e.target.value
-        //   })
-        //     for (var i = 0; i <x.length ;i++){
-        //     x[i].show=true
-        //     }
-        console.log(this.products)
-      }
-
+          console.log(e.target.value)
+          this.products=[]
+          db.collection('category').where('subCategory', '==', e.target.value).get().then
+        (querySnapshot =>{
+            querySnapshot.forEach(doc =>{
+                    const data = {
+                    'id':doc.id,
+                    'name':doc.data().product_name,
+                    'photo':doc.data().product_photo,
+                    'category':doc.data().category,
+                    'created':doc.data().created                
+                }
+                this.products.push(data)
+            })
+        })
+        //   this.products=[],
+        //     db.collection('category').where('subcategory', '==', 'Hotel').get()
+        //     .then(querySnapshot =>{
+        //     querySnapshot.forEach(doc =>{
+        //          console.log(doc)
+        //             this.id = doc.id,
+        //             this.category = doc.category,
+        //             this.name = doc.product_name,
+        //             this.photo = doc.product_photo    
+        //             })
+        //         this.products.push(data)
+        //     })
+        }
   }
 };
 </script>

@@ -57,42 +57,28 @@ import productItem from "@/components/product-item";
 export default {
     data(){
         return{
-            products:[{
-                name:'item 1',
-                text:'Lorem ipsum dolor sit amet.',
-                photo:'./../../static/img/travel-1.jpg',
-            },
-            {
-                name:'item 2',
-                text:'Lorem ipsum dolor sit amet.',
-                photo:'./../../static/img/travel-2.jpg',
-            },
-            {
-                name:'item 3',
-                text:'Lorem ipsum dolor sit amet.',
-                photo:'./../../static/img/travel-1.jpg',
-            },
-            {
-                name:'item 4',
-                text:'Lorem ipsum dolor sit amet.',
-                photo:'./../../static/img/travel-2.jpg',
-            },
-            {
-                name:'item 5',
-                text:'Lorem ipsum dolor sit amet.',
-                photo:'./../../static/img/travel-1.jpg',
-            },
-            {
-                name:'item 6',
-                text:'Lorem ipsum dolor sit amet.',
-                photo:'./../../static/img/travel-2.jpg',
-            },
-            ]
+        
         }
     },
   components: {
     productItem
-  }
+  },
+  beforeCreate () {
+    db.collection('category').where('product_name', '==', this.$route.params.id).get()
+    .then(querySnapshot =>{
+            querySnapshot.forEach(doc =>{
+              this.id = doc.data().id,
+              this.category = doc.data().category,
+              this.product_name = doc.data().product_name,
+              this.product_photo= doc.data().product_photo,
+              this.mainCategory = doc.data().mainCategory,
+              this.subCategory = doc.data().subCategory
+            })
+              .catch(err =>{
+                console.log('Error getting document',err);
+              })
+    })
+  },
 };
 </script>
 

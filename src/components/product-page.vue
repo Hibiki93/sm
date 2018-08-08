@@ -1,8 +1,7 @@
 <template> 
     <div class="container row">
         <div class="col-12">
-            <b-btn class="chip">Automotive</b-btn>
-            <b-btn class="chip">Car Accessories</b-btn>
+            <b-btn class="chip">{{mainCategory}} \ {{subCategory}}</b-btn>
         </div>
         <div class="product-image col-md-6 col-xs-12">
             
@@ -20,48 +19,40 @@
     >
 
       <!-- Text slides with image -->
-      <b-carousel-slide caption="First slide"
-                        text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-                        img-src="./../../static/img/car-1.jpg"
+      <b-carousel-slide caption=""
+                        text=""
+                        :img-src="product_photo"
       ></b-carousel-slide>
-
-      <!-- Slides with custom text -->
-      <b-carousel-slide img-src="./../../static/img/car-2.jpg">
-        <h1>Hello world!</h1>
-      </b-carousel-slide>
-      <!-- Slides with img slot -->
-      <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
-      <b-carousel-slide>
-        <img slot="img" class="d-block img-fluid w-100" width="1024" height="480"
-             src="./../../static/img/car-1.jpg" alt="image slot">
+      <b-carousel-slide :img-src="product_photo" >
       </b-carousel-slide>
 
     </b-carousel>
         </div>
         <div class="col-md-5 col-xs-12 text-left">
-            <h3>{{name}}</h3>
-            <h4>{{this.$route.params.id}}</h4>
-            <p>Company : ACM Motorsport </p>
+            <h3><strong>{{product_name}}</strong> </h3>
+            <p>Company : {{company_name}} </p>
             <p> Product Created Date : 2018-8-03</p>
-            <p> Official Website : <a href="http://www.acm-motorsport.com.my">http://www.acm-motorsport.com.my</a></p>
-            <div>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt accusamus animi perspiciatis velit et obcaecati neque, aut sequi eveniet, ipsum, amet magni distinctio tempora ratione ullam soluta earum dolores itaque.
-            </div>
+            <p> Official Website : <a :href="company_website">{{company_website}}</a></p>
             <tr></tr>
         </div>
-        <div class="col-12 row">
+            <b-card class="box col-12 row ">
+              <div>{{product_detail}}</div>
+            </b-card>
+
+            <div class="col-12 row">
             <div class="map-image col-md-5 col-xs-12">
                 <img src="./../../static/img/map.jpg" width="100%">                          
           </div>
-          <div class="col-lg-6">
+            <div class="col-lg-6">
               <div>
-                <p>ACM Motorsport</p>
+                <p>{{company_name}}</p>
                 <P>Address:</P>
-                <p>D-3-5-G, Jalan Dutamas 3, Taman Dutamas Cheras, 43200 Balakong, Selangor, Malaysia.</p>
+                <p>{{company_address}}</p>
               </div>
                 <br>
                 <b-btn class="chip">Contact Supplier</b-btn>
             </div>
+
         </div>
       </div>
 </template>
@@ -71,38 +62,32 @@ import db from '@/database/firebaseInit'
 
 export default {
   beforeCreate () {
-    db.collection('category').where('id','==',this.$route.params.id).get()
+    db.collection('category').where('id', '==', this.$route.params.id).get()
     .then(querySnapshot =>{
             querySnapshot.forEach(doc =>{
-              vm.id = doc.data().id,
-              vm.product_name = doc.data().product_name,
-              vm.product_photo= doc.data().product_photo,
-              vm.product_detail = doc.data().product_detail,
-              vm.company_name = doc.data().compony_name,
-              vm.company_website = doc.data().company_website,
-              vm.company_number = doc.data().company_number
-    }
-    )})
-		// db.collection('category').where('id','==', this.$route.params.id).get()
-		// .then(querySnapshot =>{
-		// 	querySnapshot.forEach(doc => {
-		// 		next(vm =>{
-		// 			vm.id = doc.data().id,
-		// 			vm.product_name = doc.data().product_name,
-		// 			vm.product_photo= doc.data().product_photo,
-		// 			vm.product_detail = doc.data().product_detail,
-		// 			vm.company_name = doc.data().compony_name,
-		// 			vm.company_website = doc.data().company_website,
-		// 			vm.company_number = doc.data().company_number
-		// 		})
-		// 	})
-		// })
+              this.id = doc.data().id,
+              this.category = doc.data().category,
+              this.product_name = doc.data().product_name,
+              this.product_photo= doc.data().product_photo,
+              this.product_detail = doc.data().product_detail,
+              this.company_name = doc.data().company_name,
+              this.company_website = doc.data().company_website,
+              this.company_number = doc.data().company_number,
+              this.company_address = doc.data().company_address,
+              this.mainCategory = doc.data().mainCategory,
+              this.subCategory = doc.data().subCategory
+            })
+              .catch(err =>{
+                console.log('Error getting document',err);
+              })
+    })
   },
   created(){
     console.log( this.$route.params.id)
   },
   data() {
     return {
+      product:[],
       slide: 0,
       sliding: null
     };

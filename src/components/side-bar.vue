@@ -7,7 +7,7 @@
 	    <div class="col-12">
     	    <div id="custom-search-input">
                 <div class="input-group">
-                    <input type="text" class="search-query form-control" placeholder="Search" />
+                    <input type="text" class="search-query form-control" placeholder="Search" v-model="keyword" @keyup.enter="serachIt" />
                     <span class="input-group-btn">
                         <button type="button" disabled>
                             <span class="fa fa-search"></span>
@@ -61,6 +61,39 @@
         </form> -->            
     </div>
 </template>
+
+<script>
+export default {
+    data(){
+        return{
+            keyword:''
+        }
+    },
+    methods:{
+        serachIt(){
+            this.$router.push({ path: `/category-el/${this.keyword}` })
+
+    //             submitSearch(e) {
+    //             // this.inputSearch = e.target.value;
+    //             // console.log(this.inputSearch)
+    //             // this.$router.push({ name: 'itemIndex', query: { q: e.target.value }});
+    //             var products = this.products;
+    //             var x;
+    //             for (x in products) {
+    //                 products[x].show = false;
+    //                 if (
+    //                 products[x].name
+    //                     .toLowerCase()
+    //                     .indexOf(e.target.value.toLowerCase()) !== -1
+    //     )
+    //       products[x].show = true;
+    //   }
+    // },
+    //     }
+    }
+}
+</script>
+
 
 <style scoped>
 .side-bar {

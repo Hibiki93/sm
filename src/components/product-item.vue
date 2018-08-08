@@ -1,8 +1,8 @@
 <template>
-    <div class="grid">
-					<figure class="thumbnail effect-sadie">
+    <div class="grid" style="margin:10px;" >
+					<figure class="effect-sadie">
 						<figcaption>
-									<img :src="photo" alt="no photo"/>
+									<img class="thumbnail" :src="photo" alt="no photo"/>
 							<router-link v-bind:to="{name:'product', params:{id:id}}">
 								<span>
 										<strong>{{name}}</strong>
@@ -24,18 +24,10 @@ export default {
 <style scoped>
 
 .thumbnail{        
-    width: auto; 
-    height: 100px;
-	background-size: cover;
-    /* overflow: auto; */
-}
-
-.thumbnail img {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-    max-height: 100%;
-    max-width: 100%;
+    width: 100%; 
+    height: 150px;
+	object-fit: cover;
+    overflow: hidden;
 }
 
 
