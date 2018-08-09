@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import db from '@/database/firebaseInit'
+import db from '@/database/firebaseInit';
 import productItem from "@/components/product-item";
 
 export default {

@@ -11,8 +11,8 @@ import CategoryEd from "@/components/category-ed";
 import CategoryEl from "@/components/category-el";
 import CategoryFd from "@/components/category-fd";
 import CategoryHb from "@/components/category-hb";
-import Cart from "@/components/cart";
 import JoinUs from "@/components/joinUs";
+import ResultPage from "@/components/resultPage";
 import BootstrapVue from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
@@ -79,14 +79,14 @@ export default new Router({
       component: CategoryHb
     },
     {
-      path: "/cart",
-      name: "cart",
-      component: Cart
-    },
-    {
       path: "/contact-us",
       name: "contact",
       component: JoinUs
+    },
+    {
+      path: "/search/:keyword",
+      name: "search",
+      component: ResultPage
     }
   ]
 });

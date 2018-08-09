@@ -63,23 +63,7 @@ export default {
   components: {
     productItem
   },
-  beforeCreate () {
-    db.collection('category').where('product_name', '==', this.$route.params.id).get()
-    .then(querySnapshot =>{
-            querySnapshot.forEach(doc =>{
-              this.id = doc.data().id,
-              this.category = doc.data().category,
-              this.product_name = doc.data().product_name,
-              this.product_photo= doc.data().product_photo,
-              this.mainCategory = doc.data().mainCategory,
-              this.subCategory = doc.data().subCategory
-            })
-              .catch(err =>{
-                console.log('Error getting document',err);
-              })
-    })
-  },
-};
+}
 </script>
 
 <style scoped>

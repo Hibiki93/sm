@@ -63,7 +63,21 @@
 </template>
 
 <script>
+import db from '@/database/firebaseInit'
 export default {
+     beforeCreate () {
+      db.collection('category').doc('id').get()
+      .then(querySnapshot =>{
+              querySnapshot.forEach(doc =>{
+                this.product_name = doc.data().product_name
+              })
+                .catch(err =>{
+                      console.log('Error getting document',err);
+                })
+      })
+              console.log('=======================================')
+              console.log(doc.data)
+    },  
     data(){
         return{
             keyword:''
@@ -71,7 +85,7 @@ export default {
     },
     methods:{
         serachIt(){
-            this.$router.push({ path: `/category-el/${this.keyword}` })
+            this.$router.push({ path: `/search/${this.keyword}` })
 
     //             submitSearch(e) {
     //             // this.inputSearch = e.target.value;
@@ -90,7 +104,8 @@ export default {
     //   }
     // },
     //     }
-    }
+    }}
+
 }
 </script>
 
